@@ -10,8 +10,8 @@ module.exports = React.createClass({
 		(function(beacon, idx) {
 			return (
 				<div key={beacon.id} onMouseOver={this.mouseOver}>
-					<label>{idx+1}.</label>
-					<input type="text" value={beacon.name} placeholder="Enter a name for the route" onChange={this.props.onNameChange.bind(null, beacon.id)} />
+					<label>{idx+1}.&nbsp;</label>
+					<input type="text" value={beacon.name} placeholder="Enter a name for the beacon" onChange={this.props.onNameChange.bind(null, beacon.id)} />
 					<label> ~ </label>
 					<input type="text" value={beacon.uuid} placeholder="Beacon UUID"  onChange={this.props.onUUIDChange.bind(null, beacon.id)} />
 				</div>

@@ -6,7 +6,7 @@ module.exports = React.createClass({
 		(function(route, idx) {
 			return (
 				<div key={route.id}>
-					<label>{idx+1}.</label>
+					<label>{idx+1}.&nbsp;</label>
 					<input type="text" value={route.name} placeholder="Enter a name for the route" onChange={this.props.onNameChange.bind(null, route.id)} />
 				</div>
 			);
