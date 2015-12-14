@@ -1,0 +1,15 @@
+{
+  "name": "augmented-virtual-reality",
+  "description": "Sparkathon - Augmented Virtual Reality",
+  "main": "web-server.js",
+  "dependencies": {
+    "babel-preset-react": "^6.1.18",
+    "babelify": "^7.2.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "watchify": "^3.6.1"
+  },
+  "scripts": {
+    "start": "watchify --debug -t [ babelify --presets [ react ] ] js/app/main.js -o js/app/bundle.js"
+  }
+}
