@@ -9,6 +9,9 @@ create table beacon (
   x_cord                    integer,
   y_cord                    integer,
   name                      varchar(255),
+  major                     varchar(255),
+  minor                     varchar(255),
+  indoor_map_id             bigint,
   constraint pk_beacon primary key (id))
 ;
 
@@ -20,15 +23,26 @@ create table customer (
   constraint pk_customer primary key (id))
 ;
 
-create table floor_map (
+create table INDOOR_MAP (
   id                        bigint auto_increment not null,
   length_in_pixels          bigint,
   width_in_pixels           bigint,
   scale                     bigint,
-  name                      varchar(255),
-  description               varchar(255),
-  mapfile                   blob,
-  constraint pk_floor_map primary key (id))
+  map_name                  varchar(255),
+  file_name                 varchar(255),
+  file_type                 varchar(255),
+  image                     blob,
+  constraint pk_INDOOR_MAP primary key (id))
+;
+
+create table route (
+  id                        bigint auto_increment not null,
+  startx                    integer,
+  starty                    integer,
+  endx                      integer,
+  endy                      integer,
+  indoor_map_id             bigint,
+  constraint pk_route primary key (id))
 ;
 
 
@@ -42,7 +56,9 @@ drop table if exists beacon;
 
 drop table if exists customer;
 
-drop table if exists floor_map;
+drop table if exists INDOOR_MAP;
+
+drop table if exists route;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 

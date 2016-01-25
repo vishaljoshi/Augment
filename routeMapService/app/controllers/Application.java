@@ -1,25 +1,102 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.Base64;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.google.common.io.Files;
 
 import models.Beacon;
-import models.FloorMap;
+import models.IndoorMap;
+
+import org.apache.commons.codec.binary.Base64;
+
+import play.libs.F.Promise;
 import play.libs.Json;
+import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.io.Files;
+
+import dto.IndoorMapDto;
+
 public class Application extends Controller {
 
+	
+	@BodyParser.Of(BodyParser.Json.class)
+	public Result addMap() throws JsonParseException, JsonMappingException, IOException{
+		Promise<Result> resultPromise = null;
+		JsonNode json = request().body().asJson();
+		String mapName = json.get("mapName").textValue();
+		JsonNode beacon = json.get("beacons").get(0);
+		JsonNode route = json.get("routes").get(0);;
+		JsonNode image = json.get("image");
+		
+
+		if (image != null) {
+			String bytes = image.asText();
+			bytes = bytes.substring(bytes.indexOf("base64,") + 7);
+			byte[] buffer = Base64.decodeBase64(bytes);
+			((ObjectNode) json).put("image", bytes);
+		}
+		
+		
+		IndoorMapDto indoorMapdto = (new ObjectMapper()).configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+				.readValue(json.toString(), IndoorMapDto.class);
+
+		System.out.println(indoorMapdto);
+		IndoorMap indoorMap  = indoorMapdto.toModel();
+		indoorMap.saveMap();
+		
+		return ok(Json.toJson(indoorMap));
+
+	}
+	@BodyParser.Of(BodyParser.Json.class)
+	public Result saveMap() throws JsonParseException, JsonMappingException, IOException{
+		Promise<Result> resultPromise = null;
+		JsonNode json = request().body().asJson();
+		String mapName = json.get("mapName").textValue();
+		JsonNode beacon = json.get("beacons").get(0);
+		JsonNode route = json.get("routes").get(0);;
+		JsonNode image = json.get("image");
+	
+        
+		if (image != null) {
+			String bytes = image.asText();
+			bytes = bytes.substring(bytes.indexOf("base64,") + 7);
+			byte[] buffer = Base64.decodeBase64(bytes);
+			((ObjectNode) json).put("image", bytes);
+		}
+		
+		
+		IndoorMapDto indoorMapdto = (new ObjectMapper()).configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+				.readValue(json.toString(), IndoorMapDto.class);
+
+		System.out.println(indoorMapdto);
+		IndoorMap indoorMap  = indoorMapdto.toModel();
+		
+		indoorMap.deleteMap();
+		
+		indoorMap.saveMap();
+		
+		return ok(Json.toJson(indoorMap));
+
+	}    
+	
+	public Result map(Long id) {
+		IndoorMap indoorMap = IndoorMap.get(id);
+		return ok(Json.toJson(indoorMap.copyToDto()));
+	}
+	
 	public Result index() {
 		return ok("Success").as("application/json");
 	}
 
-	public Result addMap() {
+/*	public Result addMap() {
 		JsonNode node = request().body().asJson();
 		if (node == null || node.isNull()) {
 			return badRequest("Request body is empty").as("application/text");
@@ -27,9 +104,9 @@ public class Application extends Controller {
 		FloorMap map = Json.mapper().convertValue(node, FloorMap.class);
 		map.save();
 		return ok("Added Map Successfully!").as("application/json");
-	}
+	}*/
 
-	public Result map(Long id) {
+	/*public Result map(Long id) {
 		FloorMap map = FloorMap.get(id);
 		return ok(Json.toJson(map)).as("application/json");
 	}
@@ -90,5 +167,5 @@ public class Application extends Controller {
 		Beacon beacon = Json.mapper().convertValue(node, Beacon.class);
 		beacon.save();
 		return ok("Beacon added successfully!").as("application/json");
-	}
+	}*/
 }

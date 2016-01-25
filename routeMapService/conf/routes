@@ -2,24 +2,13 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-POST /maps				controllers.Application.addMap()
+GET  /      controllers.Application.index()
+POST  /addMap  controllers.Application.addMap()
+POST  /saveMap  controllers.Application.saveMap()
+GET  /map/:id  controllers.Application.map(id:Long)
 
-GET /maps				controllers.Application.maps()
 
-GET /maps/:id			controllers.Application.map(id: Long)
 
-POST /maps/:id/image	controllers.Application.uploadMap(id: Long)
-
-GET /maps/:id/image		controllers.Application.downloadMap(id: Long)
-
-POST /ping/:id			controllers.Application.ping(id: Long)
-
-POST /register			controllers.Application.registerDevice()
-
-POST /beacons			controllers.Application.addBeacon()
-
-GET /beacons			controllers.Application.beacons()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file   controllers.Assets.versioned(path="/public", file: Asset)
