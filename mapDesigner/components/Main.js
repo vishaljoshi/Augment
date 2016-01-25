@@ -1,19 +1,18 @@
-// import React, { Component, PropTypes } from 'react';
-// import { SOME_ACTION } from '../constants/ActionTypes';
+import React, { Component, PropTypes } from 'react';
+import { SET_MAP_NAME } from '../constants/ActionTypes';
 
-// export default class Main extends Component {
-//   static propTypes = {
-//     someapp: PropTypes.object.isRequired,
-//     actions: PropTypes.object.isRequired
-//   }
+export default class Main extends Component {
+  static propTypes = {
+    indoorMapState: PropTypes.object.isRequired
+  };
 
 //   constructor() {
 
 //   }
 
-//   render() {
-//     return (
-//       <div>Main componentSome</div>
-//     );
-//   }
-// }
+  render() {
+    return (
+      <div>Main component Indoor Map</div>
+    );
+  }
+}
