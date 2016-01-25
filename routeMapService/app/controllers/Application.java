@@ -52,7 +52,7 @@ public class Application extends Controller {
 		IndoorMap indoorMap  = indoorMapdto.toModel();
 		indoorMap.saveMap();
 		
-		return ok(Json.toJson(indoorMap));
+		return ok(Json.toJson(indoorMap.copyToDto()));
 
 	}
 	@BodyParser.Of(BodyParser.Json.class)
@@ -76,14 +76,14 @@ public class Application extends Controller {
 		IndoorMapDto indoorMapdto = (new ObjectMapper()).configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 				.readValue(json.toString(), IndoorMapDto.class);
 
-		System.out.println(indoorMapdto);
+		System.out.println("SAVE :"+indoorMapdto);
 		IndoorMap indoorMap  = indoorMapdto.toModel();
 		
 		indoorMap.deleteMap();
 		
 		indoorMap.saveMap();
 		
-		return ok(Json.toJson(indoorMap));
+		return ok(Json.toJson(indoorMap.copyToDto()));
 
 	}    
 	
