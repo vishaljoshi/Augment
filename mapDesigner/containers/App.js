@@ -4,9 +4,11 @@ import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk'
 
 import IndoorMapApp from './indoorMapApp';
-import * as reducers from '../reducers/indoorMapReducer';
+import indoorMapReducers from '../reducers/indoorMapReducer';
 
-const reducer = combineReducers(reducers);
+const reducer = combineReducers({
+	indoorMap: indoorMapReducers
+});
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
 const store = createStoreWithMiddleware(reducer);
 

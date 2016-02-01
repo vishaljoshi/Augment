@@ -14,17 +14,10 @@ export function setFloorImage(floorImage) {
 	}
 }
 
-export function addBeacon(beacon) {
+export function setBeacon(beaconId, x, y, uuid, name, majorVer, minorVer) {
 	return {
 		type: actions.SET_BEACON,
-		item: beacon
-	}
-}
-
-export function updateBeacon(beacon) {
-	return {
-		type: actions.SET_BEACON,
-		item: beacon
+		item: {id: beaconId, xCord: x, yCord: y, uuid: uuid, major: majorVer, minor: minorVer}
 	}
 }
 
@@ -35,17 +28,23 @@ export function deleteBeacon(beaconId) {
 	}
 }
 
-export function addRoute(route) {
+export function setRoute(routeId, x, y) {
 	return {
 		type: actions.SET_ROUTE,
-		item: route
+		item: {id: routeId, x: x, y: y}
 	}
 }
 
-export function updateRoute(route) {
+export function setEndRoutePreview(x, y) {
 	return {
-		type: actions.SET_ROUTE,
-		item: route
+		type: actions.SET_ROUTE_PREVIEW,
+		item: {x: x, y: y}
+	}
+}
+
+export function cancelRoute() {
+	return {
+		type: actions.CANCEL_ROUTE
 	}
 }
 
@@ -56,8 +55,15 @@ export function deleteRoute(routeId) {
 	}
 }
 
-export function save() {
+export function saveMap() {
 	return {
-		type: actions.SAVE
+		type: actions.SAVE_MAP
+	}
+}
+
+export function setPen(pen) {
+	return {
+		type: actions.SET_PEN,
+		payload: pen
 	}
 }

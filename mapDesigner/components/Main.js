@@ -12,25 +12,26 @@ import Simulator from './Simulator';
 injectTapEventPlugin();
 
 export default class Main extends Component {
-  static propTypes = {
-    indoorMapState: PropTypes.object.isRequired
-  };
+	static propTypes = {
+		actions: PropTypes.object.isRequired,
+		indoorMapState: PropTypes.object.isRequired
+	};
 
-  render() {
-    return (
-		<div>
-			<AppBar title="INDOOR MAP DESIGNER"
-				iconClassNameRight="muidocs-icon-navigation-expand-more"></AppBar>
+	render() {
+		return (
+			<div>
+				<AppBar title="INDOOR MAP DESIGNER" style={{backgroundColor: 'gray'}}
+					iconClassNameRight="muidocs-icon-navigation-expand-more"></AppBar>
 
-			<Tabs>
-				<Tab label="Designer">
-					<Designer indoorMapState={this.props.indoorMapState}/>
-				</Tab>
-				<Tab label="Simulator">
-					<Simulator/>
-				</Tab>
-			</Tabs>
-		</div>
-    );
-  }
+				<Tabs>
+					<Tab label="Designer">
+						<Designer actions={this.props.actions} indoorMapState={this.props.indoorMapState}/>
+					</Tab>
+					<Tab label="Simulator">
+						<Simulator/>
+					</Tab>
+				</Tabs>
+			</div>
+		);
+	}
 }
