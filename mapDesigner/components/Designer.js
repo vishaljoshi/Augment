@@ -18,8 +18,8 @@ export default class Designer extends Component {
 				<ActionBar actions={this.props.actions} pen={this.props.indoorMapState.editor.pen} />
 
 				<div style={{width: '30%', display: 'inline-block', verticalAlign: 'top'}}>
-					<Beacons/>
-					<Routes/>
+					<Beacons actions={this.props.actions} beacons={this.props.indoorMapState.floorMap.beacons}/>
+					<Routes  actions={this.props.actions} routes={this.props.indoorMapState.floorMap.routes}/>
 				</div>
 				<div  style={{width: '70%', display: 'inline-block', verticalAlign: 'top'}}>
 					<MapVisualizer actions={this.props.actions} floorMap={this.props.indoorMapState.floorMap}/>

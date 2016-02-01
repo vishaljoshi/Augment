@@ -10,6 +10,7 @@ export const DELETE_BEACON = 'DELETE_BEACON';
 export const SET_ROUTE = 'SET_ROUTE';
 export const SET_ROUTE_PREVIEW = 'SET_ROUTE_PREVIEW';
 export const CANCEL_ROUTE = 'CANCEL_ROUTE';
+export const UPDATE_ROUTE = 'UPDATE_ROUTE';
 export const DELETE_ROUTE = 'DELETE_ROUTE';
 
 export const SAVE_REQUEST = 'SAVE_REQUEST';

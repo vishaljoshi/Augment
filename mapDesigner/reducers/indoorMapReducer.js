@@ -15,8 +15,8 @@ const initialState = {
 	}
 };
 
-// Beacon Object {id: '', uuid: '', major: '101', minor: '1', xCord: 0, yCord: 0}
-// Route Object {id: '', startx: 0, starty: 0, endx: 0, endy: 0}
+// Beacon Object {id: '', name:'', uuid: '', major: '101', minor: '1', xCord: 0, yCord: 0}
+// Route Object {id: '', name:'', startx: 0, starty: 0, endx: 0, endy: 0}
 
 export default function setIndoorMap(state = initialState, action) {
 	//console.log('Indoor map reducing with action type', action.type);
@@ -61,6 +61,12 @@ export default function setIndoorMap(state = initialState, action) {
 			} else {
 				return state
 			}
+
+		case actions.UPDATE_ROUTE:
+				var routesMap = state.floorMap.routes.set(action.item.id, action.item);
+				return {...state,
+							editor: {...state.editor, currentRoute: null, endRoutePreview: null},
+							floorMap: {...state.floorMap, routes: routesMap}}
 
 		case actions.CANCEL_ROUTE:
 			return {...state, editor: {...state.editor, currentRoute: null, endRoutePreview: null}}

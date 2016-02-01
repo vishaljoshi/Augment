@@ -14,10 +14,17 @@ export function setFloorImage(floorImage) {
 	}
 }
 
-export function setBeacon(beaconId, x, y, uuid, name, majorVer, minorVer) {
+export function setBeacon(beaconId, x, y, name, uuid, majorVer, minorVer) {
 	return {
 		type: actions.SET_BEACON,
-		item: {id: beaconId, xCord: x, yCord: y, uuid: uuid, major: majorVer, minor: minorVer}
+		item: {id: beaconId, name: name, uuid: uuid, major: majorVer, minor: minorVer, xCord: x, yCord: y}
+	}
+}
+
+export function updateBeacon(beacon) {
+	return {
+		type: actions.SET_BEACON,
+		item: beacon
 	}
 }
 
@@ -32,6 +39,13 @@ export function setRoute(routeId, x, y) {
 	return {
 		type: actions.SET_ROUTE,
 		item: {id: routeId, x: x, y: y}
+	}
+}
+
+export function updateRoute(route) {
+	return {
+		type: actions.UPDATE_ROUTE,
+		item: route
 	}
 }
 
