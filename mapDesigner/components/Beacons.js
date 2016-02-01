@@ -35,7 +35,7 @@ export default class Beacons extends Component {
 			return (
 				<div key={beaconItem.id} className='beacon' onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
 					<label>{idx+1}.&nbsp;</label>
-					<input type="text" value={beaconItem.name} placeholder="Beacon Name" size="15" onChange={ e => {beaconItem.name=e.target.value; this.beaconInfoChange(e, beaconItem)} } />
+					<input type="text" value={beaconItem.name} placeholder="Beacon Name" size="12" onChange={ e => {beaconItem.name=e.target.value; this.beaconInfoChange(e, beaconItem)} } />
 					<label> ~ </label>
 					<input type="text" value={beaconItem.uuid} placeholder="Beacon UUID" size="20" onChange={ e => {beaconItem.uuid=e.target.value; this.beaconInfoChange(e, beaconItem)} } />
 					<label> ~ </label>

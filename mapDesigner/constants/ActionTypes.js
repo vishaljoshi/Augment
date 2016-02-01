@@ -15,8 +15,12 @@ export const DELETE_ROUTE = 'DELETE_ROUTE';
 
 export const SAVE_REQUEST = 'SAVE_REQUEST';
 export const SAVE_COMPLETED = 'SAVE_COMPLETED';
+export const CLEAR_SAVE_STATUS = 'CLEAR_SAVE_STATUS';
 
 export const FETCH_MAP_REQUEST = 'FETCH_MAP_REQUEST';
 export const RECEIVE_MAP = 'RECEIVE_MAP';
 
-
+export const NEW_MAP = 'NEW_MAP';
+export const CANCEL_NEW_MAP = 'CANCEL_NEW_MAP';
+export const OPEN_MAP = 'OPEN_MAP';
+export const CANCEL_OPEN_MAP = 'CANCEL_OPEN_MAP';

@@ -14,7 +14,7 @@ export default class Routes extends Component {
 	};
 
 	routeInfoChange(e, route) {
-		console.log('Route is changed', route);
+		//console.log('Route is changed', route);
 		this.props.actions.updateRoute(route);
 	}
 

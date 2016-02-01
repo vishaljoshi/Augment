@@ -15,7 +15,11 @@ export default class Designer extends Component {
 	render() {
 		return (
 			<div>
-				<ActionBar actions={this.props.actions} pen={this.props.indoorMapState.editor.pen} />
+				<ActionBar actions={this.props.actions} pen={this.props.indoorMapState.editor.pen}
+					floorMap={this.props.indoorMapState.floorMap}
+					saveStatus={this.props.indoorMapState.editor.saveStatus}
+					newMap={this.props.indoorMapState.editor.newMap}
+					openMap={this.props.indoorMapState.editor.openMap} />
 
 				<div style={{width: '30%', display: 'inline-block', verticalAlign: 'top'}}>
 					<Beacons actions={this.props.actions} beacons={this.props.indoorMapState.floorMap.beacons}/>

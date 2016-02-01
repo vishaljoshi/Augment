@@ -3,9 +3,12 @@ import * as actions from '../constants/ActionTypes';
 
 const initialState = {
 	editor: {
+		newMap: false,
+		openMap: false,
 		pen: null,
 		currentRoute: null,
-		endRoutePreview: null
+		endRoutePreview: null,
+		saveStatus: null
 	},
 	floorMap: {
 		mapName: null,
@@ -19,7 +22,7 @@ const initialState = {
 // Route Object {id: '', name:'', startx: 0, starty: 0, endx: 0, endy: 0}
 
 export default function setIndoorMap(state = initialState, action) {
-	//console.log('Indoor map reducing with action type', action.type);
+	console.log('Indoor map reducing with action type', action.type);
 
 	switch (action.type) {
 		case actions.SET_MAP_NAME:
@@ -78,8 +81,23 @@ export default function setIndoorMap(state = initialState, action) {
 		case actions.SET_PEN:
 			let nextPen = state.editor.pen === action.payload? null : action.payload;
 			return {...state, editor: {...state.editor, pen: nextPen}}
-		case actions.SAVE_MAP:
-			return {...state}
+		case actions.SAVE_COMPLETED:
+			if (action.error) {
+				return {...state, editor: {...state.editor, saveStatus: false}}
+			} else {
+				return {...state, editor: {...state.editor, saveStatus: true}}
+			}
+		case actions.CLEAR_SAVE_STATUS:
+				return {...state, editor: {...state.editor, saveStatus: null}}
+
+		case actions.NEW_MAP:
+				return {...state, editor: {...state.editor, newMap: true}}
+		case actions.CANCEL_NEW_MAP:
+				return {...state, editor: {...state.editor, newMap: false}}
+		case actions.OPEN_MAP:
+				return {...state, editor: {...state.editor, openMap: true}}
+		case actions.CANCEL_OPEN_MAP:
+				return {...state, editor: {...state.editor, openMap: false}}
 
 		default:
 			return state;
